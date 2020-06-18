@@ -55,7 +55,7 @@ else
     console.log("Db connected successfully")
 
 // Setup server port
-var port = process.env.PORT || 8080;
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 
 // Send message for default URL
 app.get('/', (req, res) => res.send('Hello World with Express'));
