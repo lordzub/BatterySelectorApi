@@ -4,8 +4,15 @@ let express = require('express');
 let bodyParser = require('body-parser');
 // Import Mongoose
 let mongoose = require('mongoose');
+
+var multer = require('multer');
+var fs = require('fs');
 // Initialise the app
 let app = express();
+
+
+
+
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 const passport = require('passport')
@@ -13,13 +20,22 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 
+const DIR = './uploads/images/';
+ 
+// let storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, DIR);
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, file.fieldname + '-' + Date.now() + '.' + path.extname(file.originalname));
+//     }
+// });
+
+
+
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
   }
-
-
-
-
 
 app.use(flash())
 app.use(session({
@@ -31,12 +47,23 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://valor-software.github.io');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 
+
+ 
+//app.use(multer({dest:'./uploads/TheseImages'}).any());
 
 var cors = require('cors')
 
 app.use(cors())
 
+app.use(express.static('./uploads'));
 // Import routes
 let apiRoutes = require("./api-routes");
 // Configure bodyparser to handle post requests

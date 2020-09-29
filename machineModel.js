@@ -14,6 +14,8 @@ var MachineSchema = mongoose.Schema({
     len:Number,
     height:Number,
     verified:Boolean,
+    image:Boolean,
+    pdf:Boolean
     
 });
 // Export Machine model

@@ -12,6 +12,8 @@ var batterySchema = mongoose.Schema({
     len:Number,
     weight:Number,
     cellWeight:Number,
+    image:Boolean,
+    pdf:Boolean
 
 });
 // Export Battery model

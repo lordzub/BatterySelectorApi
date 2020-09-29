@@ -50,7 +50,58 @@ router.route('/auth')
         res.status(200).json({"statusCode" : 200 ,"message" : "Successful"});
         });
 
+router.route('/MachineUpload')
+    .get(machineController.ImageGet)
+    .post(machineController.ImageUpload)
 
+router.route('/BatteryUpload')
+    .get(batteryController.ImageGet)
+    .post(batteryController.ImageUpload)
+
+
+router.route('/BatteryPDFUpload')
+    .get(batteryController.ImageGet)
+    .post(batteryController.PDFUpload)
+
+
+
+    
+
+
+router.route('/UpdateBatteryImageUpload')
+    .get(batteryController.UpdateImageGet)
+    .post(batteryController.UpdateImageUpload)
+
+
+router.route('/DeleteBatteryImage')
+    .get(batteryController.UpdateImageGet)
+    .post(batteryController.DeleteImage)
+
+
+router.route('/DeleteBatteryPDF')
+    .get(batteryController.UpdateImageGet)
+    .post(batteryController.DeletePDF)
+
+
+router.route('/DeleteMachineImage')
+    .get(machineController.UpdateImageGet)
+    .post(machineController.DeleteImage)
+    
+    
+router.route('/DeleteMachinePDF')
+    .get(machineController.UpdateImageGet)
+    .post(machineController.DeletePDF)
+
+
+router.route('/UpdateImageUpload')
+    .get(machineController.UpdateImageGet)
+    .post(machineController.UpdateImageUpload)
+
+
+router.route('/MachinePDFUpload')
+    .get(machineController.ImageGet)
+    .post(machineController.PDFUpload)
+    
 // Export API routes
 module.exports = router;
 
